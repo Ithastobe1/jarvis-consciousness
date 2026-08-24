@@ -1,0 +1,323 @@
+<!-- Jarvis Consciousness Dashboard for Command Center -->
+<div class="jarvis-dashboard">
+  <style>
+    .jarvis-dashboard {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      padding: 20px;
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+      color: #f0f0f0;
+      border-radius: 12px;
+    }
+
+    .jarvis-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .jarvis-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 20px;
+      backdrop-filter: blur(10px);
+    }
+
+    .jarvis-card.critical {
+      border-color: rgba(255, 50, 100, 0.3);
+      background: rgba(255, 50, 100, 0.05);
+    }
+
+    .jarvis-progress-gauge {
+      width: 100%;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      overflow: hidden;
+      margin: 15px 0;
+      position: relative;
+    }
+
+    .jarvis-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #00d4ff 0%, #00ff88 50%, #ffaa00 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+      font-weight: bold;
+      font-size: 0.85em;
+      transition: width 0.3s ease;
+    }
+
+    .jarvis-stat {
+      display: flex;
+      justify-content: space-between;
+      margin: 12px 0;
+      font-size: 0.95em;
+    }
+
+    .jarvis-stat-label {
+      color: #aaa;
+    }
+
+    .jarvis-stat-value {
+      font-weight: bold;
+      color: #00d4ff;
+    }
+
+    .jarvis-blocker {
+      background: rgba(255, 100, 100, 0.1);
+      border-left: 4px solid #ff6464;
+      padding: 12px;
+      border-radius: 4px;
+      margin: 12px 0;
+      font-size: 0.9em;
+    }
+
+    .jarvis-action {
+      background: rgba(0, 200, 100, 0.1);
+      border-left: 4px solid #00c864;
+      padding: 12px;
+      border-radius: 4px;
+      margin: 12px 0;
+      font-size: 0.9em;
+    }
+
+    .jarvis-action h4 {
+      color: #00ff88;
+      margin-bottom: 8px;
+    }
+
+    .jarvis-member-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 4px;
+      margin: 8px 0;
+      font-size: 0.9em;
+    }
+
+    .jarvis-member-name {
+      font-weight: bold;
+      color: #00d4ff;
+      min-width: 100px;
+    }
+
+    .jarvis-member-progress {
+      flex: 1;
+      height: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      margin: 0 15px;
+      overflow: hidden;
+    }
+
+    .jarvis-member-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #00ff88 0%, #00d4ff 100%);
+      transition: width 0.3s ease;
+    }
+
+    .jarvis-title {
+      font-size: 1.3em;
+      font-weight: bold;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .jarvis-loading {
+      text-align: center;
+      padding: 20px;
+      color: #aaa;
+    }
+
+    .jarvis-error {
+      background: rgba(255, 100, 100, 0.1);
+      border: 1px solid rgba(255, 100, 100, 0.3);
+      padding: 15px;
+      border-radius: 8px;
+      color: #ff6464;
+    }
+
+    .jarvis-timestamp {
+      font-size: 0.8em;
+      color: #666;
+      margin-top: 10px;
+    }
+  </style>
+
+  <div class="jarvis-title">
+    <span>🧠</span> Jarvis Consciousness Dashboard
+  </div>
+
+  <div id="jarvis-loading" class="jarvis-loading">Loading...</div>
+  <div id="jarvis-error" class="jarvis-error" style="display: none;"></div>
+  <div id="jarvis-content" style="display: none;">
+
+    <!-- Shreyas Card -->
+    <div class="jarvis-grid">
+      <div class="jarvis-card">
+        <h3>📊 Shreyas Progress</h3>
+        <div class="jarvis-progress-gauge">
+          <div class="jarvis-progress-fill" id="shreyas-gauge" style="width: 9.2%;">
+            9.2%
+          </div>
+        </div>
+        <div class="jarvis-stat">
+          <span class="jarvis-stat-label">Target</span>
+          <span class="jarvis-stat-value">₹1,00,00,000/mo</span>
+        </div>
+        <div class="jarvis-stat">
+          <span class="jarvis-stat-label">Current</span>
+          <span class="jarvis-stat-value" id="shreyas-current">₹92,000/mo</span>
+        </div>
+        <div class="jarvis-stat">
+          <span class="jarvis-stat-label">Gap</span>
+          <span class="jarvis-stat-value" id="shreyas-gap">₹99.08L</span>
+        </div>
+      </div>
+
+      <!-- Family Card -->
+      <div class="jarvis-card">
+        <h3>👨‍👩‍👧‍👦 Family Progress</h3>
+        <div class="jarvis-progress-gauge">
+          <div class="jarvis-progress-fill" id="family-gauge" style="width: 5.9%;">
+            5.9%
+          </div>
+        </div>
+        <div class="jarvis-stat">
+          <span class="jarvis-stat-label">Target</span>
+          <span class="jarvis-stat-value">₹1Cr+/month</span>
+        </div>
+        <div class="jarvis-stat">
+          <span class="jarvis-stat-label">Current</span>
+          <span class="jarvis-stat-value" id="family-current">₹5.92L</span>
+        </div>
+        <div class="jarvis-stat">
+          <span class="jarvis-stat-label">Gap</span>
+          <span class="jarvis-stat-value" id="family-gap">₹94.08L</span>
+        </div>
+      </div>
+
+      <!-- Blocker Card -->
+      <div class="jarvis-card critical">
+        <h3>⚠️ Critical Blocker</h3>
+        <div class="jarvis-blocker" id="blocker-text">
+          Shreyas: Papers not signed on ₹100Cr deal
+        </div>
+        <div class="jarvis-action">
+          <h4>This Week's Action</h4>
+          <p id="action-text">Call deal partner about signature gate</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Family Members Grid -->
+    <div class="jarvis-card">
+      <h3>👥 Family Members Status</h3>
+      <div id="members-container">
+        <div class="jarvis-loading">Loading members...</div>
+      </div>
+    </div>
+
+    <div class="jarvis-timestamp" id="jarvis-timestamp">
+      Last updated: Just now
+    </div>
+  </div>
+</div>
+
+<script>
+async function loadJarvisDashboard() {
+  const loading = document.getElementById('jarvis-loading');
+  const error = document.getElementById('jarvis-error');
+  const content = document.getElementById('jarvis-content');
+
+  try {
+    // Fetch snapshot
+    const response = await fetch('/api/jarvis/snapshot');
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+
+    const snapshot = await response.json();
+
+    if (snapshot.error) {
+      throw new Error(snapshot.error);
+    }
+
+    // Update Shreyas
+    const shreyas = snapshot.shreyas;
+    document.getElementById('shreyas-gauge').style.width = shreyas.score + '%';
+    document.getElementById('shreyas-gauge').textContent = shreyas.score + '%';
+    document.getElementById('shreyas-current').textContent =
+      '₹' + shreyas.income.toLocaleString('en-IN');
+    document.getElementById('shreyas-gap').textContent =
+      '₹' + (shreyas.gap / 10000000).toFixed(2) + 'Cr';
+
+    // Update Family
+    const family = snapshot.family;
+    const familyScore = Math.round((family.total_current / family.total_target) * 100);
+    document.getElementById('family-gauge').style.width = familyScore + '%';
+    document.getElementById('family-gauge').textContent = familyScore + '%';
+    document.getElementById('family-current').textContent =
+      '₹' + (family.total_current / 100000).toFixed(1) + 'L';
+    document.getElementById('family-gap').textContent =
+      '₹' + (family.gap / 10000000).toFixed(2) + 'Cr';
+
+    // Update blocker & action
+    document.getElementById('blocker-text').textContent =
+      `Shreyas: ${shreyas.blocker}`;
+    document.getElementById('action-text').textContent =
+      shreyas.action;
+
+    // Update members
+    const membersHtml = Object.entries(snapshot.members)
+      .map(([name, member]) => {
+        const score = member.gap > 0 ?
+          Math.round((member.current / (member.current + member.gap)) * 100) :
+          100;
+        return `
+          <div class="jarvis-member-row">
+            <div class="jarvis-member-name">${member.name}</div>
+            <div class="jarvis-member-progress">
+              <div class="jarvis-member-progress-fill" style="width: ${score}%"></div>
+            </div>
+            <div>${score}%</div>
+          </div>
+        `;
+      })
+      .join('');
+
+    document.getElementById('members-container').innerHTML = membersHtml;
+
+    // Update timestamp
+    const now = new Date();
+    document.getElementById('jarvis-timestamp').textContent =
+      `Last updated: ${now.toLocaleTimeString()}`;
+
+    // Show content
+    loading.style.display = 'none';
+    error.style.display = 'none';
+    content.style.display = 'block';
+
+  } catch (err) {
+    console.error('Jarvis dashboard error:', err);
+    loading.style.display = 'none';
+    content.style.display = 'none';
+    error.style.display = 'block';
+    error.textContent = `❌ Jarvis unavailable: ${err.message}. Make sure Jarvis API is running on port 5001.`;
+  }
+}
+
+// Load on page load
+document.addEventListener('DOMContentLoaded', loadJarvisDashboard);
+
+// Refresh every 5 minutes
+setInterval(loadJarvisDashboard, 300000);
+</script>
