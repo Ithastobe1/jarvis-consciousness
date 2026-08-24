@@ -67,18 +67,15 @@ def psychology_analysis():
     print(f"   Diagnosis: {diagnosis['diagnosis']}")
     print(f"   Recommendation: {diagnosis['recommendation']}")
 
-    # Best approach
-    print(f"\n💡 BEST APPROACH FOR YOU:")
-    approaches = [
-        PsychologicalModel.best_approach_for_person("early_morning"),
-        PsychologicalModel.best_approach_for_person("broker_intro"),
-        PsychologicalModel.best_approach_for_person("personal_relationship"),
-    ]
+    # Best approaches
+    print(f"\n💡 BEST APPROACHES FOR YOU:")
+    approaches_dict = PsychologicalModel.DECISION_MAKING_PATTERNS
 
-    for approach in approaches:
-        print(f"\n   {approach['description']}")
-        print(f"   Success rate: {int(approach['success_rate'] * 100)}%")
-        print(f"   Why: {approach['why']}")
+    for method, stats in list(approaches_dict.items())[:3]:
+        rate = int(stats.get('success_rate', 0) * 100)
+        print(f"\n   {method.replace('_', ' ').title()}")
+        print(f"   Success rate: {rate}%")
+        print(f"   Attempts: {stats.get('sample_size', 0)}")
 
     print("\n" + "=" * 80)
     return diagnosis

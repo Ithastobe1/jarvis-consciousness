@@ -35,7 +35,9 @@ class JarvisAPI:
 
     def family_briefing(self) -> dict:
         """Family-level weekly briefing."""
-        self.family.sync_outcomes()  # Sync latest outcomes
+        from pathlib import Path
+        outcomes_path = Path(__file__).parent.parent / "data" / "outcomes.jsonl"
+        self.family.sync_outcomes(outcomes_path)  # Sync latest outcomes
         return self.family.weekly_family_briefing()
 
     def record_outcome(
