@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jarvis Consciousness — Weekly Briefing</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #f0f0f0;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #00d4ff 0%, #7f39fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            color: #aaa;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .card.critical {
+            border-color: rgba(255, 50, 100, 0.3);
+            background: rgba(255, 50, 100, 0.05);
+        }
+
+        .card h2 {
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .gauge {
+            width: 100%;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .gauge-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00d4ff 0%, #00ff88 50%, #ffaa00 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #000;
+            font-size: 0.9em;
+            transition: width 0.3s ease;
+        }
+
+        .stat {
+            margin: 15px 0;
+            font-size: 0.95em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .stat-value {
+            font-weight: bold;
+            color: #00d4ff;
+            font-size: 1.1em;
+        }
+
+        .stat-label {
+            color: #aaa;
+        }
+
+        .blocker {
+            background: rgba(255, 100, 100, 0.1);
+            border-left: 4px solid #ff6464;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+
+        .action {
+            background: rgba(0, 200, 100, 0.1);
+            border-left: 4px solid #00c864;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+
+        .action h3 {
+            color: #00ff88;
+            margin-bottom: 8px;
+        }
+
+        .timeline {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .timeline li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .timeline li:last-child {
+            border-bottom: none;
+        }
+
+        .timeline-marker {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #00d4ff;
+            flex-shrink: 0;
+            margin-top: 4px;
+        }
+
+        .lever {
+            background: rgba(100, 150, 255, 0.1);
+            border-left: 4px solid #6496ff;
+            padding: 12px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+
+        .lever-name {
+            font-weight: bold;
+            color: #6496ff;
+        }
+
+        .lever-value {
+            color: #00ff88;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .emoji {
+            font-size: 1.2em;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧠 Jarvis Consciousness</h1>
+            <p>Your Goal Engine — Track ₹1Cr/mo + Family Exit</p>
+        </div>
+
+        <div class="grid">
+            <!-- Progress Card -->
+            <div class="card">
+                <h2><span class="emoji">📊</span> Progress Toward Goal</h2>
+                <div class="gauge">
+                    <div class="gauge-fill" id="progressGauge" style="width: 9.2%;">
+                        9.2%
+                    </div>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Target</span>
+                    <span class="stat-value">₹1,00,00,000/mo</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Current</span>
+                    <span class="stat-value">₹92,000/mo</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Gap</span>
+                    <span class="stat-value">₹99,08,000/mo</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Deadline</span>
+                    <span class="stat-value">2027-01-01</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Days Left</span>
+                    <span class="stat-value" id="daysLeft">130 days</span>
+                </div>
+            </div>
+
+            <!-- Blocker Card -->
+            <div class="card critical">
+                <h2><span class="emoji">⚠️</span> Current Blocker</h2>
+                <div class="blocker">
+                    <strong>Root Cause:</strong> You're rejection-averse (not risk-averse)
+                </div>
+                <p style="color: #aaa; margin: 15px 0;">You build instead of asking. Opportunities stall because you won't make the call.</p>
+                <div class="action">
+                    <h3>This Week's Ask:</h3>
+                    <p><strong>Call about ₹100Cr deal papers.</strong></p>
+                    <p style="color: #aaa; margin-top: 8px; font-size: 0.9em;">Follow up on signature gate (3-4 weeks to close). ₹1.5L/month potential if pushed.</p>
+                </div>
+            </div>
+
+            <!-- Top Lever Card -->
+            <div class="card">
+                <h2><span class="emoji">🎯</span> Top Lever</h2>
+                <div class="lever">
+                    <div class="lever-name">₹100Cr Stalled Deal</div>
+                    <div class="lever-value">₹1,50,000/month potential</div>
+                    <div style="color: #aaa; margin-top: 5px; font-size: 0.85em;">Priority: CRITICAL | Status: STALLED</div>
+                </div>
+                <div class="lever">
+                    <div class="lever-name">₹15Cr Land Sale</div>
+                    <div class="lever-value">₹27,000/month potential</div>
+                    <div style="color: #aaa; margin-top: 5px; font-size: 0.85em;">Priority: HIGH | Status: READY</div>
+                </div>
+                <div class="lever">
+                    <div class="lever-name">Pallavi Post-Exit Income</div>
+                    <div class="lever-value">₹5,00,000/month potential</div>
+                    <div style="color: #aaa; margin-top: 5px; font-size: 0.85em;">Priority: HIGH | Status: NOT_PLANNED</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Timeline Card -->
+        <div class="card">
+            <h2><span class="emoji">⏱️</span> Critical Timeline</h2>
+            <ul class="timeline">
+                <li>
+                    <div class="timeline-marker"></div>
+                    <div>
+                        <strong>Now (Aug 24, 2026)</strong><br>
+                        <span style="color: #aaa;">Close ₹100Cr deal • Plan Pallavi transition</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="timeline-marker"></div>
+                    <div>
+                        <strong>Sept 1, 2026 — CRITICAL</strong><br>
+                        <span style="color: #ff6464;">Income gap explodes to ₹24L/12mo • Pallavi stops flying</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="timeline-marker"></div>
+                    <div>
+                        <strong>Oct 1, 2026</strong><br>
+                        <span style="color: #aaa;">Pallavi post-exit income must be running</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="timeline-marker"></div>
+                    <div>
+                        <strong>Jan 1, 2027 — EXIT DAY</strong><br>
+                        <span style="color: #00ff88;">Both quit • Systems run themselves • ₹1Cr/mo achieved</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            <p>🔄 Updated: <span id="lastUpdate">Just now</span></p>
+            <p>📍 <a href="https://github.com/Ithastobe1/jarvis-consciousness" style="color: #00d4ff;">github.com/Ithastobe1/jarvis-consciousness</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Update days left
+        const deadline = new Date('2027-01-01');
+        const now = new Date();
+        const daysLeft = Math.ceil((deadline - now) / (1000 * 60 * 60 * 24));
+        document.getElementById('daysLeft').textContent = daysLeft + ' days';
+
+        // Update timestamp
+        document.getElementById('lastUpdate').textContent = new Date().toLocaleString();
+    </script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+{
+  "situation": {
+    "root_goal": "Family joint exit + ₹1Cr/month restitution",
+    "time_horizon_months": 12,
+    "deadline": "2027-01-01",
+    "urgency_starts": "2026-09-01",
+    "reason": "Pallavi stops flying permanently; income ends; family exit plan activates"
+  },
+  "financial": {
+    "current_monthly_burn": {
+      "amount_inr": 2500000,
+      "breakdown": {
+        "family_expenses": 1200000,
+        "business_operations": 800000,
+        "property_obligations": 500000
+      }
+    },
+    "current_monthly_inhand": {
+      "amount_inr": 92000,
+      "source": "D1 (data center minority JV)"
+    },
+    "monthly_gap": {
+      "amount_inr": 2408000,
+      "must_close_by": "2026-09-01"
+    },
+    "total_12month_gap": {
+      "amount_inr": 22000000,
+      "range": "22-30M"
+    },
+    "target": {
+      "amount_inr": 10000000,
+      "period": "per_month",
+      "required_to_close_gap": true
+    }
+  },
+  "levers": [
+    {
+      "id": "lever_100cr_deal",
+      "name": "₹100Cr Stalled Deal",
+      "current_value": 100000000,
+      "commission_percent": 1.5,
+      "potential_personal_income": 1500000,
+      "monthly_equivalent": 150000,
+      "status": "STALLED",
+      "blocker": "Papers not signed (3-4 week gate)",
+      "action_needed": "Follow up on signature gate — who/when to ask?",
+      "priority": "CRITICAL",
+      "likelihood_if_pushed": 0.6
+    },
+    {
+      "id": "lever_15cr_land",
+      "name": "₹12–15Cr Land Sale",
+      "current_value": 13500000,
+      "commission_percent": 2,
+      "potential_personal_income": 270000,
+      "monthly_equivalent": 27000,
+      "status": "READY",
+      "blocker": "Capital positioning (broker/buyer connection)",
+      "action_needed": "Call broker X — position deal this week",
+      "priority": "HIGH",
+      "likelihood_if_pushed": 0.8
+    },
+    {
+      "id": "lever_pallavi_post_exit",
+      "name": "Pallavi Post-Exit Income",
+      "potential_monthly_income": 500000,
+      "status": "NOT_PLANNED",
+      "blocker": "Model not decided (consultant vs board vs advisor)",
+      "action_needed": "Decide income model for Pallavi's post-Oct role",
+      "priority": "HIGH",
+      "likelihood": 0.95
+    },
+    {
+      "id": "lever_data_center",
+      "name": "Data Center + MSP Ladder",
+      "current_monthly_income": 92000,
+      "potential_monthly_income": 500000,
+      "status": "LIVE_MINORITY_JV",
+      "blocker": "Full ownership not possible until 2029-2031",
+      "action_needed": "Plan MSP + master-agent brokerage NOW",
+      "priority": "MEDIUM",
+      "likelihood": 0.7
+    }
+  ],
+  "bottleneck": {
+    "root_cause": "Rejection aversion (not risk aversion)",
+    "manifestation": "You build instead of asking",
+    "cost": "Opportunities stall because you won't make the ask",
+    "examples": [
+      "₹100Cr deal waiting for signature follow-up",
+      "Brokers never called about ₹15Cr land",
+      "Pallavi's post-exit model never discussed"
+    ],
+    "fix": "External accountability + weekly asks",
+    "jarvis_role": "Coach you to ask; track outcomes"
+  },
+  "systems": {
+    "velesia": {
+      "status": "LAUNCH_READY",
+      "gap": "Trust+content; service IA; owner decisions",
+      "action": "Ship 2026-08-31; decide on post-launch roadmap"
+    },
+    "command_center": {
+      "status": "LIVE",
+      "gap": "No WhatsApp/multi-family access; dashboard unfinished",
+      "action": "Wire Pallavi/Dad/Maa accounts + finish dashboards"
+    },
+    "jarvis": {
+      "status": "LIVE_PARTIAL",
+      "gap": "Telegram bot live; agents built; zero ask-coaching",
+      "action": "Add consciousness layer (this project)"
+    },
+    "wealth_management": {
+      "status": "BUILT_NOT_WIRED",
+      "gap": "Quant lab live but no CC integration",
+      "action": "Connect Quant Lab to CC dashboards"
+    }
+  },
+  "timeline": {
+    "now_2026_08_24": {
+      "income_gap": "₹2.4L/month",
+      "status": "MANAGEABLE (D1 covers)",
+      "action": "Close leverage deals; plan Pallavi transition"
+    },
+    "2026_09_01": {
+      "income_gap": "EXPLODES to ₹24L over 12mo",
+      "status": "URGENT",
+      "pallavi_status": "Off work; no salary for 1 year",
+      "action": "ONE ₹50–100Cr deal must close OR bundle smaller deals"
+    },
+    "2026_10_01": {
+      "pallavi_post_exit_income": "MUST BE RUNNING",
+      "status": "CRITICAL",
+      "action": "Income model decided; first payment received"
+    },
+    "2027_01_01": {
+      "target_monthly": 10000000,
+      "status": "EXIT_READY",
+      "action": "Both of you quit; systems run themselves"
+    }
+  },
+  "decision_gates": [
+    {
+      "gate": "₹100Cr deal follow-up",
+      "decision": "Push now or wait?",
+      "data_needed": "Signature timeline, broker confidence",
+      "jarvis_recommendation": "PUSH (80% confidence; 3-4 weeks away)",
+      "next_action": "Call deal partner THIS WEEK"
+    },
+    {
+      "gate": "Pallavi's post-Oct role",
+      "decision": "Consultant? Board seat? Advisor?",
+      "data_needed": "Revenue model, client base, family input",
+      "jarvis_recommendation": "Board seat + advisor hybrid (70% confidence)",
+      "next_action": "Discuss with Pallavi + Maa THIS WEEK"
+    },
+    {
+      "gate": "Which broker to engage for ₹15Cr land?",
+      "decision": "Broker A/B/C or go direct?",
+      "data_needed": "Track record, current pipeline, commission alignment",
+      "jarvis_recommendation": "Broker X (90% confidence based on NeoSapien history)",
+      "next_action": "Call X on Monday morning"
+    }
+  ],
+  "weekly_cadence": {
+    "monday": "Jarvis gives briefing (goal, blocker, action)",
+    "monday_evening": "You make the ask (call, email, meeting)",
+    "friday": "You report outcome (yes/no/maybe)",
+    "next_monday": "Jarvis learns and adjusts recommendation"
+  }
+}

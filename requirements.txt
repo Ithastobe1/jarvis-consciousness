@@ -1,0 +1,13 @@
+# Jarvis Consciousness Layer
+# Minimal dependencies — pure Python stdlib focus
+
+# Optional: for web dashboard
+flask==3.0.0
+
+# Optional: for data visualization
+matplotlib==3.8.0
+
+# Development
+pytest==7.4.0
+black==23.9.0
+ruff==0.0.292
