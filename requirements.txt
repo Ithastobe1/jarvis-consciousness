@@ -1,6 +1,10 @@
 # Jarvis Consciousness Layer
 # Minimal dependencies — pure Python stdlib focus
 
+# Required: HTTP client used by cc_integration/jarvis_client.py and
+# telegram_integration/jarvis_commands.py to call the Jarvis API
+requests==2.34.2
+
 # Optional: for web dashboard
 flask==3.0.0
 
